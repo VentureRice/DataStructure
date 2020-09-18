@@ -1,3 +1,4 @@
+cd /Users/apple/Desktop/DataStructure/DataStructure
 git init
 git add .
 git commit -m 'update'
