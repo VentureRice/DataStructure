@@ -48,6 +48,20 @@ print(dp[(len(W),cap)])
 
 ### 多重背包问题
 
-```python
 
+加入数量限制s
+
+```python
+W = [2,3,4,5]
+V = [3,4,5,6]
+s = [1,2,3,1]
+cap = 10
+N = len(W)
+f = [0] *(cap+1)
+
+for i in range(1, N+1):
+    for j in range(cap,W[i-1]-1,-1):
+        for k in range(1, min(s[i-1], j//W[i-1])+1):
+            f[j] = max(f[j], f[j-k*W[i-1]]+k*V[i-1])               
+print(f[cap])
 ```
