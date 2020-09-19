@@ -103,9 +103,6 @@ g.node_print()
 
 ### 深度优先搜索 DFS
 
-```python
-
-```
 
 ### 广度优先搜索 BFS
 
@@ -156,7 +153,7 @@ for j in range(m):
         count+=1
         queue = [j]
         while queue:
-            cur_node = queue.pop(0)
+            cur_node = queue.pop(0) #cur_node = queue.pop()==>DFS
             nbr_nodelist = links[cur_node]
             for nbr_node in nbr_nodelist:
                 if visited[nbr_node] == 0:
