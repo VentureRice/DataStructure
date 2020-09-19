@@ -162,6 +162,36 @@ for j in range(m):
 print(count)                        
 ```
 
+#### 递归DFS
+
+```python
+# 递归DFS
+m=len(M)
+links={i:[] for i in range(m)}
+
+for i in range(m):
+    for j in range(m):
+        if M[i][j]==1 and i!=j:
+            links[i].append(j)
+
+visited=[0]*m
+count=0
+def dfs(root,k):
+    global count
+    if visited[root]!=0:
+        return 
+    if k==True:
+        count+=1
+    visited[root]=1
+    for i in links[root]:
+        if visited[i]==0:
+            dfs(i,False)
+
+for i in range(m):
+    dfs(i,True)
+print(count)
+```
+
 #### 01 矩阵（542）
 
 
