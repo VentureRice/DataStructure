@@ -88,7 +88,6 @@ print('宽度优先搜索:')
 print('  ', end='  ')
 g.node_print()
 g.clear()
-
 ```
 
 ```python
@@ -97,7 +96,6 @@ print('\n\n深度优先搜索:')
 print('  ', end='  ')
 g.DFS('A')
 g.node_print()
-print()
 
 ```
 
