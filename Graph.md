@@ -101,10 +101,6 @@ print()
 
 ```
 
-```python
-
-```
-
 ### 深度优先搜索 DFS
 
 ```python
@@ -252,4 +248,65 @@ for i in range(M):
                         print(newdx,newdy,count)
             ans.append(count)
 sorted(ans)
+```
+
+```python
+
+```
+
+### 二分图
+
+
+#### 可能的二分法（886）
+
+
+给定一组 N 人（编号为 1, 2, ..., N）， 我们想把每个人分进任意大小的两组。
+
+每个人都可能不喜欢其他人，那么他们不应该属于同一组。
+
+形式上，如果 dislikes[i] = [a, b]，表示不允许将编号为 a 和 b 的人归入同一组。
+
+当可以用这种方法将每个人分进两组时，返回 true；否则返回 false。
+
+```python
+N = 4
+dislikes = [[1,2],[1,3],[2,4],[2,3]]
+```
+
+```python
+links = {i:[] for i in range(1,N+1)}
+
+for pair in dislikes:
+    links[pair[0]].append(pair[1])
+    links[pair[1]].append(pair[0])
+
+visited = [0]*N
+color = {}
+
+ans = True
+for i in range(1,N+1):
+    if visited[i-1] == 0:
+        visited[i-1] = 1
+        queue = [i]
+        color[i] = 0
+        #size = len(links[i])
+        while queue:
+            init_node = queue.pop(0)
+            size = len(links[init_node])
+            for k in range(size):
+                cur_node = links[init_node][k]
+                if visited[cur_node-1] == 0:
+                    visited[cur_node-1] = 1
+                    color[cur_node] = 1-color[init_node]
+                    queue.append(cur_node)
+                else:
+                    if color[cur_node] == color[init_node]:
+                        ans = False
+                print(init_node,cur_node,color[init_node],color[cur_node],ans)
+                print(color)
+                
+```
+
+```python
+
 ```
