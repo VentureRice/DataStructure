@@ -10,6 +10,9 @@
 W = [2,3,4,5]
 V = [3,4,5,6]
 cap = 8
+```
+
+```python
 dp = {(i,w):0 for i in range(len(W)+1)
      for w in range(cap+1)}
 for i in range(1,len(W)+1):
@@ -36,6 +39,9 @@ print(dp[(len(W),cap)])
 W = [2,3,4,5]
 V = [3,4,5,6]
 cap = 10
+```
+
+```python
 dp = {(i,w):0 for i in range(len(W)+1)
      for w in range(cap+1)}
 for i in range(1,len(W)+1):
@@ -56,6 +62,9 @@ W = [2,3,4,5]
 V = [3,4,5,6]
 s = [1,2,3,1]
 cap = 10
+```
+
+```python
 N = len(W)
 f = [0] *(cap+1)
 
@@ -80,6 +89,9 @@ print(f[cap])
 ```python
 A = "acdes"
 B = "ace" 
+```
+
+```python
 m, n = len(A), len(B)
 ans = 0
 dp = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
@@ -89,8 +101,4 @@ for i in range(1, m + 1):
             dp[i][j] = dp[i - 1][j - 1] + 1
             ans = max(ans, dp[i][j])
 print(ans)
-```
-
-```python
-
 ```
