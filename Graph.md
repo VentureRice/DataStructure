@@ -211,3 +211,45 @@ for i in range(M):
                         grid[newdx][newdy]='0'
 print(count)          
 ```
+
+#### 水域大小
+
+
+你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。
+
+```python
+land = [
+  [0,2,1,0],
+  [0,1,0,1],
+  [1,1,0,1],
+  [0,1,0,1]
+]
+```
+
+```python
+ans = []
+M,N = len(land),len(land[0])
+dirs = [(0,1),(1,0),(0,-1),(-1,0),(1,1),(1,-1),(-1,1),(-1,-1)]
+
+for i in range(M):
+    for j in range(N):
+        if land[i][j] == 0:
+            count = 1
+            queue = [(i,j)]
+            land[i][j] = -1000
+            while queue:
+                size = len(queue)
+                for k in range(size):
+                    x,y = queue.pop(0)
+                    for dx,dy in dirs:
+                        newdx = x+dx
+                        newdy = y+dy
+                        if newdx<0 or newdy<0 or newdx>=M or newdy>=N or land[newdx][newdy]!=0:
+                            continue
+                        queue.append((newdx,newdy))
+                        land[newdx][newdy]=-1000 
+                        count+=1
+                        print(newdx,newdy,count)
+            ans.append(count)
+sorted(ans)
+```
