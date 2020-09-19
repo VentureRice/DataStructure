@@ -4,8 +4,6 @@
 ### 定义一个图
 
 ```python
-from collections import deque    # 线性表的模块
- 
 # 首先定义一个创建图的类，使用邻接矩阵
 class Graph(object):
     def __init__(self, *args, **kwargs):
