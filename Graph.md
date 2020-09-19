@@ -122,6 +122,45 @@ while queue 不空：
             queue.push(该节点)
 ```
 
+#### 朋友圈（547）
+
+
+```python
+M = [[1,0,0,1],
+     [0,1,1,0],
+     [0,1,1,1],
+     [1,0,1,1]]
+```
+
+```python
+m,n = len(M),len(M[0])
+
+links = {i:[] for i in range(m)}
+
+for i in range(m):
+    for j in range(m):
+        if M[i][j] == 1 and i!=j:
+            links[i].append(j)
+
+visited = [0]*m
+count = 0
+for j in range(m):
+    if visited[j] == 0:
+        visited[j] = 1
+        count+=1
+        queue = [j]
+        while queue:
+            size = len(queue)
+            for i in range(size):
+                cur_node = queue.pop(0)
+                nbr_nodelist = links[cur_node]
+                for nbr_node in nbr_nodelist:
+                    if visited[nbr_node] == 0:
+                        queue.append(nbr_node)
+                        visited[nbr_node] = 1
+print(count)                        
+```
+
 #### 01 矩阵（542）
 
 
@@ -250,9 +289,8 @@ for i in range(M):
 sorted(ans)
 ```
 
-```python
+类似题目：岛屿的最大面积（695）
 
-```
 
 ### 二分图
 
@@ -306,7 +344,7 @@ for i in range(1,N+1):
                         ans = False
                 print(init_node,cur_node,color[init_node],color[cur_node],ans)
                 print(color)
-                
+print(ans)
 ```
 
 ```python
