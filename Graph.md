@@ -113,6 +113,11 @@ print()
 
 ### 广度优先搜索 BFS
 
+
+用队列记录访问的节点。
+
+pop(0)队首出队
+
 ```python
 while queue 不空：
     cur = queue.pop()
