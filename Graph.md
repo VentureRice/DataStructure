@@ -101,7 +101,25 @@ print()
 
 ```
 
+```python
+
+```
+
 ### 深度优先搜索 DFS
+
+```python
+
+```
+
+### 广度优先搜索 BFS
+
+```python
+while queue 不空：
+    cur = queue.pop()
+    for 节点 in cur的所有相邻节点：
+        if 该节点有效且未访问过：
+            queue.push(该节点)
+```
 
 ```python
 
