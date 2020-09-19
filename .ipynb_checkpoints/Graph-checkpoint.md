@@ -29,12 +29,14 @@ class Graph(object):
             return -1
 
         while search_queue:
-            person = search_queue.pop(0)
-            self.order.append(person)
- 
-            if (not person in visited) and (person in self.neighbor.keys()):
-                search_queue += self.neighbor[person]
-                visited.append(person)
+            size = len(search_queue) #
+            for k in range(size): # 某些题目可删掉
+                person = search_queue.pop(0)
+                self.order.append(person)
+
+                if (not person in visited) and (person in self.neighbor.keys()):
+                    search_queue += self.neighbor[person]
+                    visited.append(person)
  
     # 深度优先算法的实现
     def DFS(self, root):
@@ -154,14 +156,12 @@ for j in range(m):
         count+=1
         queue = [j]
         while queue:
-            size = len(queue)
-            for i in range(size):
-                cur_node = queue.pop(0)
-                nbr_nodelist = links[cur_node]
-                for nbr_node in nbr_nodelist:
-                    if visited[nbr_node] == 0:
-                        queue.append(nbr_node)
-                        visited[nbr_node] = 1
+            cur_node = queue.pop(0)
+            nbr_nodelist = links[cur_node]
+            for nbr_node in nbr_nodelist:
+                if visited[nbr_node] == 0:
+                    queue.append(nbr_node)
+                    visited[nbr_node] = 1
 print(count)                        
 ```
 
