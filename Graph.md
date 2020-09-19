@@ -22,7 +22,8 @@ class Graph(object):
     def BFS(self, root):
         #首先判断根节点是否为空节点
         if root != None:
-            search_queue = deque()
+            #search_queue = deque()
+            search_queue = []
             search_queue.append(root)
             visited = []
         else:
@@ -30,7 +31,7 @@ class Graph(object):
             return -1
 
         while search_queue:
-            person = search_queue.popleft()
+            person = search_queue.pop(0)
             self.order.append(person)
  
             if (not person in visited) and (person in self.neighbor.keys()):
@@ -41,7 +42,8 @@ class Graph(object):
     def DFS(self, root):
         # 首先判断根节点是否为空节点
         if root != None:
-            search_queue = deque()
+            #search_queue = deque()
+            search_queue = []
             search_queue.append(root)
  
             visited = []
@@ -50,15 +52,15 @@ class Graph(object):
             return -1
  
         while search_queue:
-            person = search_queue.popleft()
+            person = search_queue.pop()
             self.order.append(person)
  
             if (not person in visited) and (person in self.neighbor.keys()):
                 tmp = self.neighbor[person]
-                tmp.reverse()
+                #tmp.reverse()
  
                 for index in tmp:
-                    search_queue.appendleft(index)
+                    search_queue.append(index)
  
                 visited.append(person)
  
