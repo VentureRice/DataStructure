@@ -77,19 +77,5 @@ class Operations:
 ```
 
 ```python
-a = 7
-b = 19
-i = 0
-res = 0
-while b > 0:
-    if b & 1:
-        res += a << i
-        print(a,b,i,a<<i,res)
-    i += 1
-    b >>= 1
-    print(b)
-```
-
-```python
 
 ```
