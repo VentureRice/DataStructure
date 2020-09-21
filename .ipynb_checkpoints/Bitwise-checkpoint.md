@@ -5,6 +5,19 @@
 
 请实现整数数字的乘法、减法和除法运算，运算结果均为整数数字，程序中只允许使用加法运算符和逻辑运算符，允许程序中出现正负常数，不允许使用位运算。
 
+
+&：按位与操作，只有 1 &1 为1，其他情况为0。可用于进位运算。
+
+|：按位或操作，只有 0|0为0，其他情况为1。
+
+~：逐位取反。
+
+^：异或，相同为0，相异为1。可用于加操作（不包括进位项）。
+
+<<：左移操作，2的幂相关
+
+\>>：右移操作，2的幂相关
+
 ```python
 class Operations:
     def __init__(self):
@@ -61,4 +74,22 @@ class Operations:
             res += times
             a = self.minus(a, curb)
         return res if pos else self.minus(0, res)
+```
+
+```python
+a = 7
+b = 19
+i = 0
+res = 0
+while b > 0:
+    if b & 1:
+        res += a << i
+        print(a,b,i,a<<i,res)
+    i += 1
+    b >>= 1
+    print(b)
+```
+
+```python
+
 ```
