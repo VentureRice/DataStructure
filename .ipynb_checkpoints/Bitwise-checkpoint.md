@@ -3,6 +3,22 @@
 
 ### 基本运算
 
+
+使用逻辑运算符实现加法
+
+```python
+def add(a,b):
+    if b==0:
+        return a
+    sums = a^b
+    carry = (a&b)<<1
+    return add(sums,carry)
+```
+
+```python
+add(9,10)
+```
+
 请实现整数数字的乘法、减法和除法运算，运算结果均为整数数字，程序中只允许使用加法运算符和逻辑运算符，允许程序中出现正负常数，不允许使用位运算。
 
 
@@ -99,4 +115,18 @@ for a in A:
 
 ```python
 res
+```
+
+```python
+ans = []
+for i in range(10):
+    ans.append(len(ans))
+```
+
+```python
+ans
+```
+
+```python
+
 ```
