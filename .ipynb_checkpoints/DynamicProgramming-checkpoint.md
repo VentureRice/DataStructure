@@ -140,5 +140,29 @@ for i in range(1,n+1):
         else:
             dp[(i,j)] = min(dp[(i-1,j)],dp[(i,j-1)],dp[(i-1,j-1)])+1
 
-dp[(n,m)]
+print(dp[(n,m)])
+```
+
+### 连续子数组的最大和(剑指 Offer 42)
+
+
+输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。
+
+要求时间复杂度为O(n)。
+
+状态定义： 设动态规划列表 dp ，dp[i] 代表以元素 nums[i] 为结尾的连续子数组最大和。
+
+```python
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+```
+
+```python
+n = len(nums)
+dp = [nums[0]]*n
+for i in range(1,n):
+    if dp[i-1]<=0:
+        dp[i] = nums[i]
+    else:
+        dp[i] = nums[i]+dp[i-1]
+print(max(dp))
 ```
