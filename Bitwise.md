@@ -126,7 +126,3 @@ for i in range(10):
 ```python
 ans
 ```
-
-```python
-
-```
