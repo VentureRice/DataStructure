@@ -11,6 +11,58 @@ class TreeNode:
         self.right = None
 ```
 
+### 二叉树的中序遍历(94)
+
+```python
+def inorderTraversal(self, root: TreeNode):
+    if not root:
+        return []
+    return inorderTraversal(root.left)+[root.val]+inorderTraversal(root.right)
+```
+
+### 二叉树的前序遍历(144)
+
+```python
+def preorderTraversal(self, root: TreeNode):
+    if not root:
+        return []
+    return [root.val]+self.preorderTraversal(root.left)+self.preorderTraversal(root.right)
+```
+
+### 二叉树的后序遍历(145)
+
+```python
+def postorderTraversal(self, root: TreeNode):
+    if not root:
+        return []
+    return postorderTraversal(root.left)+postorderTraversal(root.right)+[root.val]
+```
+
+### 二叉树的层序遍历(102)
+
+
+BFS模版
+
+```python
+def levelOrder(root: TreeNode):
+    queue = [root]
+    res = []
+    while queue:
+        size = len(queue)
+        level = []
+        for _ in range(size):
+            cur = queue.pop(0)
+            if not cur:
+                continue
+            level.append(cur.val)
+            queue.append(cur.left)
+            queue.append(cur.right)
+        if level:
+            res.append(level)
+    return res
+
+```
+
 ### 二叉树的所有路径
 
 
@@ -36,6 +88,15 @@ class Solution:
         paths = []
         construct_paths(root, '')
         return paths
+```
+
+```python
+dic = {0: [3], 1: [9, 20], 2: [15, 7]}
+dic
+```
+
+```python
+
 ```
 
 ```python
