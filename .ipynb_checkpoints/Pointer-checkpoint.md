@@ -84,7 +84,3 @@ def function(c):
     return False
 
 ```
-
-```python
-
-```
