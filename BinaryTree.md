@@ -89,16 +89,3 @@ class Solution:
         construct_paths(root, '')
         return paths
 ```
-
-```python
-dic = {0: [3], 1: [9, 20], 2: [15, 7]}
-dic
-```
-
-```python
-
-```
-
-```python
-
-```
