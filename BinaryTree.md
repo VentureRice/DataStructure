@@ -89,3 +89,36 @@ class Solution:
         construct_paths(root, '')
         return paths
 ```
+
+### N叉树的前序遍历（589）
+
+
+给定一个 N 叉树，返回其节点值的前序遍历。
+
+```python
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+```
+
+```python
+node = Node(1,[Node(3,[Node(5),Node(6)]),Node(2),Node(4)])
+```
+
+```python
+# DFS
+visited = [node]
+order = []
+
+while visited:
+    cur_node = visited.pop()
+    if cur_node.children:
+        visited.extend(cur_node.children[::-1])
+    order.append(cur_node.val)
+```
+
+```python
+
+```
