@@ -109,6 +109,8 @@ node = Node(1,[Node(3,[Node(5),Node(6)]),Node(2),Node(4)])
 
 ```python
 # DFS
+if not node:
+    ptint(node)
 visited = [node]
 order = []
 
@@ -117,6 +119,8 @@ while visited:
     if cur_node.children:
         visited.extend(cur_node.children[::-1])
     order.append(cur_node.val)
+    
+print(order)
 ```
 
 ```python
