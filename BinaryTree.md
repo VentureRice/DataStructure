@@ -5,10 +5,10 @@
 
 ```python
 class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 ```
 
 ### 二叉树的中序遍历(94)
@@ -184,6 +184,37 @@ while stack:
 print(len(visited)==n)
 ```
 
-```python
+### 二叉树最大宽度（662）
 
+
+给定一个二叉树，编写一个函数来获取这个树的最大宽度。树的宽度是所有层中的最大宽度。这个二叉树与满二叉树（full binary tree）结构相同，但一些节点为空。
+
+每一层的宽度被定义为两个端点（该层最左和最右的非空节点，两端点间的null节点也计入长度）之间的长度。
+
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+```
+
+```python
+root = TreeNode(1,left = TreeNode(2,left = TreeNode(4), right = None), right = TreeNode(3))
+```
+
+```python
+class Solution:
+    def widthOfBinaryTree(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        ans, que = 1, [(0, root)]   #起始坐标为0，节点为根节点
+        while que:
+            ans = max(ans, que[-1][0] - que[0][0] + 1)
+            tmp = []                #下一轮队列
+            for i, q in que:        #坐标节点生成
+                q.left and tmp.append((i * 2, q.left))
+                q.right and tmp.append((i * 2 + 1, q.right))
+            que = tmp
+        return ans
 ```
