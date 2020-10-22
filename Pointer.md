@@ -84,3 +84,12 @@ def function(c):
     return False
 
 ```
+
+```python
+import tensorflow as tf
+tf.__version__
+```
+
+```python
+
+```
