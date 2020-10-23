@@ -85,11 +85,31 @@ def function(c):
 
 ```
 
+### 合并区间（56）
+
+
+给出一个区间的集合，请合并所有重叠的区间。
+
 ```python
-import tensorflow as tf
-tf.__version__
+intervals = [[2,3],[4,5],[6,7],[8,9],[1,10]]
 ```
 
 ```python
+intervals = sorted(intervals)
+ans = [intervals[0]]
+for k in range(1,len(intervals)):
+    x = ans.pop()
+    if intervals[k][0]<=x[1]:
+        if intervals[k][1]<=x[1]:
+            ans.append(x)
+        else:
+            ans.append([x[0],intervals[k][1]])
+    else:
+        ans.append(x)
+        ans.append(intervals[k])
+    print(k,ans)
+```
 
+```python
+ans
 ```
