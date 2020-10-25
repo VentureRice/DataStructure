@@ -166,3 +166,39 @@ for i in range(1,n):
         dp[i] = nums[i]+dp[i-1]
 print(max(dp))
 ```
+
+### 目标和（494）
+
+
+给定一个非负整数数组，a1, a2, ..., an, 和一个目标数，S。现在你有两个符号 + 和 -。对于数组中的任意一个整数，你都可以从 + 或 -中选择一个符号添加在前面。
+
+返回可以使最终数组和为目标数 S 的所有添加符号的方法数。
+
+```python
+nums = [1, 1, 1, 1, 1]
+S = 3
+```
+
+```python
+# Solution1
+n = len(nums)
+sums = sum(nums)
+#dp = {(i,j):0 for i in range(n+1) for j in range(-sums-1,sums+1)}
+dp[(0,0)] = 1
+for i in range(1,n+1):
+    for j in range(-sums-1,sums+1):
+        dp[(i,j)] = dp.get((i-1,j-nums[i-1]),0)+dp.get((i-1,j+nums[i-1]),0)
+print(dp.get((n,S),0))
+```
+
+```python
+# Solution2
+if sum(nums) < S or (sum(nums) + S) % 2 == 1: print(0)
+P = (sum(nums) + S) // 2
+dp = [1] + [0 for _ in range(P)]
+for num in nums:
+    for j in range(P,num-1,-1):
+        dp[j] += dp[j - num]
+        #print(dp,num,j)
+print(dp[P])
+```
