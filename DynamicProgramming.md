@@ -202,3 +202,35 @@ for num in nums:
         #print(dp,num,j)
 print(dp[P])
 ```
+
+### 和为 K 的最少斐波那契数字数目（1414）
+
+
+给你数字 k ，请你返回和为 k 的斐波那契数字的最少数目，其中，每个斐波那契数字都可以被使用多次。数据保证对于给定的 k ，一定能找到可行解。
+
+```python
+k = 7
+```
+
+```python
+a,b = 1,1
+Fibo = [a,b]
+while a+b<=k:
+    Fibo.append(a+b)
+    a,b = b,a+b
+
+ans = 0
+while k>0:
+    cur = Fibo.pop()
+    if cur<=k:
+        k-=cur
+        ans+=1
+```
+
+```python
+ans
+```
+
+```python
+
+```
