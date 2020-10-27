@@ -218,3 +218,51 @@ class Solution:
             que = tmp
         return ans
 ```
+
+### 二叉树的垂序遍历(987)
+
+
+给定二叉树，按垂序遍历返回其结点值。
+
+对位于 (X, Y) 的每个结点而言，其左右子结点分别位于 (X-1, Y-1) 和 (X+1, Y-1)。
+
+把一条垂线从 X = -infinity 移动到 X = +infinity ，每当该垂线与结点接触时，我们按从上到下的顺序报告结点的值（ Y 坐标递减）。
+
+如果两个结点位置相同，则首先报告的结点值较小。
+
+按 X 坐标顺序返回非空报告的列表。每个报告都有一个结点值列表。
+
+
+```python
+root = TreeNode(1,left = TreeNode(2,left = TreeNode(4), right = None), right = TreeNode(3,left = TreeNode(5,left = TreeNode(6))))
+```
+
+```python
+dic = {}
+def coordinate(root,x,y):
+    #global dic
+    if not root:
+        return dic
+    dic[root.val] = (x,y)
+    coordinate(root.left,x-1,y+1)
+    coordinate(root.right,x+1,y+1)
+    return dic
+    
+
+dic_coor = coordinate(root,0,0)
+order = {}
+for node in dic_coor:
+    if dic_coor[node][0] in order:
+        order[dic_coor[node][0]].append(node)
+    else:
+        order[dic_coor[node][0]] = [node]
+
+
+#ans = list(order.values())  
+key_list = sorted(order.keys())
+res = []
+for key in key_list:
+    x = order[key]
+    res.append(sorted(x,key = lambda a:(dic_coor[a][1],a))) 
+print(res)
+```

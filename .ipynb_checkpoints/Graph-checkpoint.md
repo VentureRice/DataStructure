@@ -378,6 +378,28 @@ for i in range(1,N+1):
 print(ans)
 ```
 
+### 对角线遍历 II（1424）
+
+
+给你一个列表 nums ，里面每一个元素都是一个整数列表。请你依照下面各图的规则，按顺序返回 nums 中对角线上的整数。
+
 ```python
+nums = [[1,2,3,4,5],[6,7],[8],[9,10,11],[12,13,14,15,16]]
+```
+
+```python
+# BFS
+ans = [nums[0][0]]
+#visited = [(0,0)]
+stack = [(0,0)]
+while stack:
+    x_cur,y_cur = stack.pop(0)
+    #num = nums[x_cur]
+    for x,y in [(x_cur+1,y_cur),(x_cur,y_cur+1)]:
+        if 0<=x<len(nums) and 0<=y<len(nums[x]) and (x,y) not in stack:
+            stack.append((x,y))
+            ans.append(nums[x][y])
+        
+
 
 ```
