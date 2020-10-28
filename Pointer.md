@@ -112,7 +112,3 @@ for k in range(1,len(intervals)):
         ans.append(intervals[k])
     print(k,ans)
 ```
-
-```python
-ans
-```
