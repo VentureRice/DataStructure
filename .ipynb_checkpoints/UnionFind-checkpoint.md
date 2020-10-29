@@ -24,6 +24,7 @@ class UnionFind(object):
         while self.uf[p]>=0:
             p = self.uf[p]
         return p
+    
     '''
     def find(self, p):
         """尾递归"""
@@ -79,14 +80,6 @@ accounts = [["John", "johnsmith@mail.com", "john00@mail.com"],
 ```
 
 ```python
-accounts = [["David","David0@m.co","David1@m.co"],
- ["David","David3@m.co","David4@m.co"],
- ["David","David4@m.co","David5@m.co"],
- ["David","David2@m.co","David3@m.co"],
- ["David","David1@m.co","David2@m.co"]]
-```
-
-```python
 count_num = 0
 ans = []
 for acc in accounts:
@@ -134,5 +127,90 @@ for x in ans:
 ```
 
 ```python
+res
+```
 
+```python
+
+```
+
+```python
+
+```
+
+### 婴儿名字（面试题 17.07.）
+
+
+每年，政府都会公布一万个最常见的婴儿名字和它们出现的频率，也就是同名婴儿的数量。有些名字有多种拼法，例如，John 和 Jon 本质上是相同的名字，但被当成了两个名字公布出来。给定两个列表，一个是名字及对应的频率，另一个是本质相同的名字对。设计一个算法打印出每个真实名字的实际频率。注意，如果 John 和 Jon 是相同的，并且 Jon 和 Johnny 相同，则 John 与 Johnny 也相同，即它们有传递和对称性。
+
+在结果列表中，选择字典序最小的名字作为真实名字。
+
+
+```python
+names = ["John(15)","Jon(12)","Chris(13)","Kris(4)","Christopher(19)"]
+synonyms = ["(Jon,John)","(John,Johnny)","(Chris,Kris)","(Chris,Christopher)"]
+
+```
+
+```python
+def getName(name):
+    name_list = name.split('(')
+    name1 = name_list[0]
+    count = name_list[1].split(')')
+    return name1,int(count[0])
+
+def getSyn(synonym):
+    synonym_list = synonym.split(',')
+    name1 = synonym_list[0][1:]
+    name2 = synonym_list[1][:-1]
+    return name1,name2
+```
+
+```python
+nameDic = {}
+idDic = {}
+countDic = {}
+for (i,name) in enumerate(names):
+    x,count = getName(name)
+    nameDic[x] = i
+    idDic[i] = x
+    countDic[x] = count
+    
+for (i,syn) in enumerate(synonyms):
+    name1,name2 = getSyn(syn)
+    if name1 not in nameDic:
+        idDic[len(nameDic)] = name1
+        nameDic[name1] = len(nameDic)
+        countDic[name1] = 0
+    if name2 not in nameDic:
+        idDic[len(nameDic)] = name2
+        nameDic[name2] = len(nameDic)  
+        countDic[name2] = 0
+
+n = len(nameDic)
+name_uf = UnionFind(n-1)
+
+for syn in synonyms:
+    name1,name2 = getSyn(syn)
+    if nameDic[name1]>nameDic[name2]:
+        name1,name2 = name2,name1
+    name_uf.union(nameDic[name1],nameDic[name2])
+
+ans = {}
+
+for (i,p) in enumerate(name_uf.uf):
+    if p < 0:
+        ans[idDic[i]] = countDic[idDic[i]]
+    else:
+        if idDic[p] in ans:
+            ans[idDic[p]] += countDic[idDic[i]]
+        else:
+            ans[idDic[p]] = countDic[idDic[i]]
+    #print(ans)
+            
+        
+
+res = []
+for x in ans:
+    res.append('%s(%d)'%(x,ans[x]))
 ```
