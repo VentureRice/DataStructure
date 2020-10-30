@@ -112,3 +112,42 @@ for k in range(1,len(intervals)):
         ans.append(intervals[k])
     print(k,ans)
 ```
+
+### 到最近的人的最大距离（849）
+
+```python
+seats = [1,0,0,0,0,0]
+```
+
+```python
+max_num = 0
+n = len(seats)
+left = [0]*n
+right = [0]*n
+
+index_first = n
+index_last = -1
+for i in range(n):
+    if seats[i]==1:
+        index_first = min(index_first,i)
+        index_last = max(index_last,i)
+
+for i in range(index_last,index_first,-1):
+    print(seats[i])
+    if seats[i] == 1:
+        max_num = 0
+    right[i] = max_num
+    max_num+=1
+for i in range(index_first):
+    left[i] = index_first-i
+for i in range(index_last,n):
+    left[i] = i-index_last
+
+max_num = 0    
+for i in range(index_first,index_last+1):
+    if seats[i] == 1:
+        max_num = 0
+    left[i] = min(right[i],max_num)
+    max_num+=1
+max(left)
+```

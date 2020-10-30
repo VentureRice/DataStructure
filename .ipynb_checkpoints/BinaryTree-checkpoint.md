@@ -234,7 +234,8 @@ class Solution:
 
 
 ```python
-root = TreeNode(1,left = TreeNode(2,left = TreeNode(4), right = None), right = TreeNode(3,left = TreeNode(5,left = TreeNode(6))))
+root = TreeNode(1,left = TreeNode(2,left = TreeNode(4), right = None), 
+         right = TreeNode(3,left = TreeNode(5,left = TreeNode(6))))
 ```
 
 ```python
@@ -265,4 +266,38 @@ for key in key_list:
     x = order[key]
     res.append(sorted(x,key = lambda a:(dic_coor[a][1],a))) 
 print(res)
+```
+
+### 检查二叉树的平衡性（面试04.04）
+
+```python
+root = TreeNode(1,left = TreeNode(2,left = TreeNode(4), right = None), 
+         right = TreeNode(3,left = TreeNode(5,left = TreeNode(6))))
+```
+
+```python
+class Solution:
+    flag = True
+    #递归求每一个节点的左右子树高度，并判断是否平衡
+    def treeHeight(self, root:TreeNode) -> int:
+        if not root:
+            return 0
+        if not root.left and not root.right:
+            return 1
+        #递归求左子树的高度
+        l_h = self.treeHeight(root.left)
+        #递归求右子树的高度
+        r_h = self.treeHeight(root.right)
+        #若有某个子树不平衡则让flag等于flase
+        if l_h - r_h > 1 or r_h - l_h >1:
+            self.flag = False
+        return max(l_h, r_h) + 1
+
+    def isBalanced(self, root: TreeNode) -> bool:
+        if not root:
+            return True
+        if not root.left and not root.right:
+            return True
+        self.treeHeight(root)
+        return self.flag
 ```
