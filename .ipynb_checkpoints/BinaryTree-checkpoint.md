@@ -123,6 +123,22 @@ while visited:
 print(order)
 ```
 
+### N叉树的后序遍历(590)
+
+```python
+class Solution:
+    def postorder(self, root: 'Node') :
+        if not root:
+            return []
+        stack = [root]
+        order = []
+        while stack:
+            cur = stack.pop()
+            order.append(cur.val)
+            stack.extend(cur.children)
+        return order[::-1]
+```
+
 ### 验证二叉树（1361）
 
 二叉树上有n个节点，按从0到n-1编号，其中节点i的两个子节点分别是leftChild[i]和rightChild[i]。
