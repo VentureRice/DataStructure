@@ -143,6 +143,56 @@ for i in range(1,n+1):
 print(dp[(n,m)])
 ```
 
+### 一次编辑(面试题 01.05)
+
+
+字符串有三种编辑操作:插入一个字符、删除一个字符或者替换一个字符。 给定两个字符串，编写一个函数判定它们是否只需要一次(或者零次)编辑。
+
+```python
+first = "pele"
+second = "pel"
+```
+
+```python
+if first==second:
+    print(True)
+
+n1 = len(first)
+n2 = len(second)
+
+if abs(n1-n2)>=2:
+    print(False)
+
+elif n1==n2:
+    l1 = 0
+    while first[l1] == second[l1]:
+        l1+=1
+    if first[l1+1:] == second[l1+1:]:
+        print(True)
+    else:
+        print(False)
+elif n1-n2==1:
+    first += ' '
+    second += ' '
+    l1 = 0
+    while first[l1] == second[l1]:
+        l1+=1
+    if first[l1+1:] == second[l1:]:
+        print(True)
+    else:
+        print(False)
+else:
+    first += ' '
+    second += ' '
+    l1 = 0
+    while first[l1] == second[l1]:
+        l1+=1
+    if first[l1:] == second[l1+1:]:
+        print(True)
+    else:
+        print(False)
+```
+
 ### 连续子数组的最大和(剑指 Offer 42)
 
 
@@ -201,4 +251,36 @@ for num in nums:
         dp[j] += dp[j - num]
         #print(dp,num,j)
 print(dp[P])
+```
+
+### 和为 K 的最少斐波那契数字数目（1414）
+
+
+给你数字 k ，请你返回和为 k 的斐波那契数字的最少数目，其中，每个斐波那契数字都可以被使用多次。数据保证对于给定的 k ，一定能找到可行解。
+
+```python
+k = 7
+```
+
+```python
+a,b = 1,1
+Fibo = [a,b]
+while a+b<=k:
+    Fibo.append(a+b)
+    a,b = b,a+b
+
+ans = 0
+while k>0:
+    cur = Fibo.pop()
+    if cur<=k:
+        k-=cur
+        ans+=1
+```
+
+```python
+ans
+```
+
+```python
+
 ```

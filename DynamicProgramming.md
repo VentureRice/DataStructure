@@ -143,6 +143,56 @@ for i in range(1,n+1):
 print(dp[(n,m)])
 ```
 
+### 一次编辑(面试题 01.05)
+
+
+字符串有三种编辑操作:插入一个字符、删除一个字符或者替换一个字符。 给定两个字符串，编写一个函数判定它们是否只需要一次(或者零次)编辑。
+
+```python
+first = "pele"
+second = "pel"
+```
+
+```python
+if first==second:
+    print(True)
+
+n1 = len(first)
+n2 = len(second)
+
+if abs(n1-n2)>=2:
+    print(False)
+
+elif n1==n2:
+    l1 = 0
+    while first[l1] == second[l1]:
+        l1+=1
+    if first[l1+1:] == second[l1+1:]:
+        print(True)
+    else:
+        print(False)
+elif n1-n2==1:
+    first += ' '
+    second += ' '
+    l1 = 0
+    while first[l1] == second[l1]:
+        l1+=1
+    if first[l1+1:] == second[l1:]:
+        print(True)
+    else:
+        print(False)
+else:
+    first += ' '
+    second += ' '
+    l1 = 0
+    while first[l1] == second[l1]:
+        l1+=1
+    if first[l1:] == second[l1+1:]:
+        print(True)
+    else:
+        print(False)
+```
+
 ### 连续子数组的最大和(剑指 Offer 42)
 
 
