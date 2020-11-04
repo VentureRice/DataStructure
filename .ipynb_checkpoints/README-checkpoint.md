@@ -11,9 +11,4 @@ From LeetCode
 - [二叉树:BinaryTree.md](https://github.com/VentureRice/DataStructure/blob/master/BinaryTree.md)
 - [并查集:UnionFind.md](https://github.com/VentureRice/DataStructure/blob/master/UnionFind.md)
 - [图:Graph.md](https://github.com/VentureRice/DataStructure/blob/master/Graph.md)
-- [图:Graph.md](#Graph.md)
 
-
-```python
-
-```

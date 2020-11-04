@@ -403,3 +403,44 @@ while stack:
 
 
 ```
+
+### 飞地的数量(1020)
+
+
+给出一个二维数组 A，每个单元格为 0（代表海）或 1（代表陆地）。
+
+移动是指在陆地上从一个地方走到另一个地方（朝四个方向之一）或离开网格的边界。
+
+返回网格中无法在任意次数的移动中离开网格边界的陆地单元格的数量。
+
+```python
+A = [[0,0,0,0],
+     [1,0,1,1],
+     [0,1,0,0],
+     [0,0,0,0]]
+```
+
+```python
+boundary = []
+n = len(A)
+m = len(A[0])
+ones = 0
+for i in range(len(A)):
+    for j in range(len(A[0])):
+        if i*j*(n-i-1)*(m-j-1)==0 and A[i][j]==1:
+            boundary.append((i,j)) 
+        if A[i][j]==1:
+            ones+=1
+
+import copy
+seen = copy.deepcopy(boundary)
+
+while boundary:
+    (cur_i,cur_j) = boundary.pop(0)
+    for (x,y) in [(cur_i+1,cur_j),(cur_i,cur_j+1),(cur_i-1,cur_j),(cur_i,cur_j-1)]:
+        if 0<=x<n and 0<=y<m and A[x][y] == 1 and (x,y) not in seen:
+            boundary.append((x,y))
+            seen.append((x,y))
+            
+ones-len(seen)
+```
