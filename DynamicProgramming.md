@@ -277,10 +277,30 @@ while k>0:
         ans+=1
 ```
 
+### 分割等和子集（416）
+
+
+给定一个只包含正整数的非空数组。是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。
+
 ```python
-ans
+nums = [1, 5, 11, 5]
 ```
 
 ```python
+def canPartition(nums):
+    n = len(nums)
+    if n < 2:
+        return False
 
+    total = sum(nums)
+    if total % 2 != 0:
+        return False
+
+    target = total // 2
+    dp = [True] + [False] * target
+    for i, num in enumerate(nums):
+        for j in range(target, num - 1, -1):
+            dp[j] |= dp[j - num]
+
+    return dp[target]
 ```

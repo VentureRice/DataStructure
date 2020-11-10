@@ -317,3 +317,26 @@ class Solution:
         self.treeHeight(root)
         return self.flag
 ```
+
+### 路径总和（112）
+
+
+给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。
+
+说明: 叶子节点是指没有子节点的节点。
+
+```python
+root = TreeNode(1,left = TreeNode(2,left = TreeNode(4), right = None), 
+         right = TreeNode(3,left = TreeNode(5,left = TreeNode(6))))
+```
+
+```python
+def hasPathSum(root, sum):
+    if not root: return False
+    if not root.left and not root.right: return sum==root.val
+    return hasPathSum(root.left,sum-root.val) or hasPathSum(root.right,sum-root.val)
+```
+
+```python
+hasPathSum(root, 7)
+```
