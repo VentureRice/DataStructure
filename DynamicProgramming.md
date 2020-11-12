@@ -354,6 +354,90 @@ def longestPalindrome(s):
     return ans
 ```
 
+### 买卖股票的最佳时机(121)
+
+
+给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
+
+如果你最多只允许完成一笔交易（即买入和卖出一支股票一次），设计一个算法来计算你所能获取的最大利润。
+
+注意：你不能在买入股票前卖出股票。
+
+
+```python
+prices = [7,1,5,3,6,4]
+```
+
+```python
+n = len(prices)
+dp = [0]*n
+min_price = prices[0]
+for i in range(1,n):
+    min_price = min(prices[i],min_price)
+    dp[i] = prices[i]-min_price
+
+max(dp)
+```
+
+### 买卖股票的最佳时机 II(122)
+
+
+给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
+
+设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。
+
+注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
+
+```python
+prices = [7,1,5,3,6,4]
+```
+
+```python
+n = len(prices)
+# 卖出最大利润：卖出：prices[i]+hold[i-1]-fee；不卖出：cash[i-1]
+cash = [0]*n
+# 买入最大利润：买入：cash[i]-price[i]；不买入：hold[i-1]
+hold = [0]*n
+
+hold[0] = -prices[0]
+for i in range(1,n):
+    cash[i] = max(prices[i]+hold[i-1],cash[i-1])
+    hold[i] = max(hold[i-1],cash[i]-prices[i])
+    print(cash,hold)
+print(cash[-1])
+```
+
+### 买卖股票的最佳时机含手续费（714）
+
+
+给定一个整数数组 prices，其中第 i 个元素代表了第 i 天的股票价格 ；非负整数 fee 代表了交易股票的手续费用。
+
+你可以无限次地完成交易，但是你每笔交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。
+
+返回获得利润的最大值。
+
+注意：这里的一笔交易指买入持有并卖出股票的整个过程，每笔交易你只需要为支付一次手续费。
+
+```python
+prices = [1, 3, 2, 8, 4, 9]
+fee = 2
+```
+
+```python
+n = len(prices)
+# 卖出最大利润：卖出：prices[i]+hold[i-1]-fee；不卖出：cash[i-1]
+cash = [0]*n
+# 买入最大利润：买入：cash[i]-price[i]；不买入：hold[i-1]
+hold = [0]*n
+
+hold[0] = -prices[0]
+for i in range(1,n):
+    cash[i] = max(prices[i]+hold[i-1]-fee,cash[i-1])
+    hold[i] = max(hold[i-1],cash[i]-prices[i])
+    print(cash,hold)
+print(cash[-1])
+```
+
 ```python
 
 ```
