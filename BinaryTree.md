@@ -340,3 +340,23 @@ def hasPathSum(root, sum):
 ```python
 hasPathSum(root, 7)
 ```
+
+### 从中序与后序遍历序列构造二叉树
+
+
+根据一棵树的中序遍历与后序遍历构造二叉树。
+
+```python
+inorder = [9,3,15,20,7]
+postorder = [9,15,7,20,3]
+```
+
+```python
+def buildTree(inorder,postorder):
+    if not postorder: return None
+    root = TreeNode(postorder[-1])
+    root_index = inorder.index(root.val)
+    root.left = buildTree(inorder[:root_index],postorder[:root_index])
+    root.right = buildTree(inorder[root_index+1:],postorder[root_index:-1])
+    return root
+```
